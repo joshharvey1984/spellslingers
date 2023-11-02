@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://62g4ky44vx3y"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_eqx4n"]
+[ext_resource type="PackedScene" uid="uid://dra8tf5236s72" path="res://scenes/mage.tscn" id="2_2dnm4"]
+[ext_resource type="Texture2D" uid="uid://4bc0fp11j7mx" path="res://assets/sprites/grass_background.png" id="2_qs768"]
+[ext_resource type="AudioStream" uid="uid://c03s4wchqjf2j" path="res://assets/music/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3" id="2_rfpa2"]
+[ext_resource type="Texture2D" uid="uid://8lif6f6qo1e4" path="res://assets/sprites/vBoundary.png" id="3_0nkq0"]
+[ext_resource type="AudioStream" uid="uid://e6m34uqmmxu3" path="res://assets/music/2020-06-18_-_8_Bit_Retro_Funk_-_www.FesliyanStudios.com_David_Renda.mp3" id="3_0r38o"]
+[ext_resource type="Texture2D" uid="uid://j8qtew2bwcd5" path="res://assets/sprites/hBoundary.png" id="4_6gtwd"]
+[ext_resource type="AudioStream" uid="uid://bocgopwxsscjg" path="res://assets/music/2021-08-30_-_Boss_Time_-_www.FesliyanStudios.com.mp3" id="4_8iwhs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yofmv"]
+size = Vector2(29, 634.661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrpxi"]
+size = Vector2(1266.85, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbfs1"]
+size = Vector2(1264.77, 33)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("MageSpawns")]
+script = ExtResource("1_eqx4n")
+TrackList = Array[AudioStreamMP3]([ExtResource("2_rfpa2"), ExtResource("3_0r38o"), ExtResource("4_8iwhs")])
+MageSpawns = [NodePath("MageSpawn"), NodePath("MageSpawn2")]
+MageScene = ExtResource("2_2dnm4")
+
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(960.5, 540)
+scale = Vector2(1.49141, 1.67813)
+texture = ExtResource("2_qs768")
+
+[node name="VBoundary" type="Sprite2D" parent="."]
+position = Vector2(23, 540.5)
+scale = Vector2(1, 1.68594)
+texture = ExtResource("3_0nkq0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="VBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoundary/StaticBody2D"]
+position = Vector2(-0.5, -0.889709)
+shape = SubResource("RectangleShape2D_yofmv")
+
+[node name="VBoundary2" type="Sprite2D" parent="."]
+position = Vector2(1893.5, 539.5)
+scale = Vector2(1.22857, 1.68594)
+texture = ExtResource("3_0nkq0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="VBoundary2"]
+position = Vector2(38, 2.07599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoundary2/StaticBody2D"]
+position = Vector2(-40, -1.48285)
+shape = SubResource("RectangleShape2D_yofmv")
+
+[node name="HBoundary" type="Sprite2D" parent="."]
+position = Vector2(960.5, 19)
+scale = Vector2(1.44453, 1)
+texture = ExtResource("4_6gtwd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoundary/StaticBody2D"]
+position = Vector2(-1.03839, 1)
+shape = SubResource("RectangleShape2D_yrpxi")
+
+[node name="HBoundary2" type="Sprite2D" parent="."]
+position = Vector2(962, 1059)
+scale = Vector2(1.44453, 1)
+texture = ExtResource("4_6gtwd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HBoundary2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoundary2/StaticBody2D"]
+position = Vector2(-5.19202, -2.5)
+shape = SubResource("RectangleShape2D_xbfs1")
+
+[node name="MageSpawn" type="Node2D" parent="."]
+position = Vector2(500, 500)
+
+[node name="MageSpawn2" type="Node2D" parent="."]
+position = Vector2(1300, 500)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
