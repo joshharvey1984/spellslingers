@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 public partial class Main : Node2D {
@@ -6,14 +5,14 @@ public partial class Main : Node2D {
 
 	[Export] public AudioStreamMP3[] TrackList;
 	[Export] public Node2D[] MageSpawns;
-	[Export] public PackedScene MageScene;
-	//[Export] public MageData[] MageDatas;
-	
-	//public List<Mage> Mages = new List<Mage>();
+	[Export] public PackedScene MageScene1;
+	[Export] public PackedScene MageScene2;
+	[Export] public PackedScene InputComponent;
+	[Export] public PackedScene AIComponent;
 	
 	public override void _Ready() {
-		var mage = (Node2D)MageScene.Instantiate();
-		var mageEnemy = (Node2D)MageScene.Instantiate();
+		var mage = (CharacterBody2D)MageScene1.Instantiate();
+		var mageEnemy = (CharacterBody2D)MageScene2.Instantiate();
 
 		mage.Position = MageSpawns[0].Position;
 		mageEnemy.Position = MageSpawns[1].Position;
@@ -21,14 +20,14 @@ public partial class Main : Node2D {
 		AddChild(mage);
 		AddChild(mageEnemy);
 
-		//var mageScript = (Mage)mage;
-		//mageScript.Initialise(PlayerType.LocalPlayer, MageDatas[1]);
+		var inputComponent = (Node2D)InputComponent.Instantiate();
+		mage.AddChild(inputComponent);
+		var inputComponentScript = (InputComponent)inputComponent;
+		inputComponentScript.CharacterBody = mage;
+		var mageScript = (IMage)mage;
+		mageScript.SpriteComponent.Target = mageEnemy;
 
-		//var mageEnemyScript = (Mage)mageEnemy;
-		//mageEnemyScript.Initialise(PlayerType.AIPlayer, MageDatas[0], AIDifficulty.Easy);
-
-		//Mages.Add(mageScript);
-		//Mages.Add(mageEnemyScript);
+		//mageEnemy.AddChild(AIComponent);
 
 		var randomTrack = TrackList[GD.Randi() % TrackList.Length];
 		Music.Stream = randomTrack;

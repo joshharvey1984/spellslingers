@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://imgfhqgt72mj"]
+
+[ext_resource type="Texture2D" uid="uid://c06plyxmjjuir" path="res://assets/sprites/fire_ball.png" id="1_g244e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgrew"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_v6f2c"]
+resource_name = "flight"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7d0d7"]
+_data = {
+"flight": SubResource("Animation_v6f2c")
+}
+
+[node name="fireball" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_qgrew")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g244e")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+autoplay = "flight"
+libraries = {
+"": SubResource("AnimationLibrary_7d0d7")
+}

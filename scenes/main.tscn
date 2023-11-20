@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://62g4ky44vx3y"]
+[gd_scene load_steps=13 format=3 uid="uid://62g4ky44vx3y"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_eqx4n"]
-[ext_resource type="PackedScene" uid="uid://dra8tf5236s72" path="res://scenes/mage.tscn" id="2_2dnm4"]
 [ext_resource type="Texture2D" uid="uid://4bc0fp11j7mx" path="res://assets/sprites/grass_background.png" id="2_qs768"]
 [ext_resource type="AudioStream" uid="uid://c03s4wchqjf2j" path="res://assets/music/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3" id="2_rfpa2"]
 [ext_resource type="Texture2D" uid="uid://8lif6f6qo1e4" path="res://assets/sprites/vBoundary.png" id="3_0nkq0"]
 [ext_resource type="AudioStream" uid="uid://e6m34uqmmxu3" path="res://assets/music/2020-06-18_-_8_Bit_Retro_Funk_-_www.FesliyanStudios.com_David_Renda.mp3" id="3_0r38o"]
 [ext_resource type="Texture2D" uid="uid://j8qtew2bwcd5" path="res://assets/sprites/hBoundary.png" id="4_6gtwd"]
 [ext_resource type="AudioStream" uid="uid://bocgopwxsscjg" path="res://assets/music/2021-08-30_-_Boss_Time_-_www.FesliyanStudios.com.mp3" id="4_8iwhs"]
+[ext_resource type="PackedScene" uid="uid://cq3h2gtt6sfxc" path="res://scenes/game_object/mages/red_mage.tscn" id="5_efqil"]
+[ext_resource type="PackedScene" uid="uid://dufvua24ditx6" path="res://scenes/components/input/input_component.tscn" id="6_2odek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yofmv"]
 size = Vector2(29, 634.661)
@@ -22,10 +23,12 @@ size = Vector2(1264.77, 33)
 script = ExtResource("1_eqx4n")
 TrackList = Array[AudioStreamMP3]([ExtResource("2_rfpa2"), ExtResource("3_0r38o"), ExtResource("4_8iwhs")])
 MageSpawns = [NodePath("MageSpawn"), NodePath("MageSpawn2")]
-MageScene = ExtResource("2_2dnm4")
+MageScene1 = ExtResource("5_efqil")
+MageScene2 = ExtResource("5_efqil")
+InputComponent = ExtResource("6_2odek")
 
 [node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(960.5, 540)
+position = Vector2(1010, 551)
 scale = Vector2(1.49141, 1.67813)
 texture = ExtResource("2_qs768")
 
@@ -81,3 +84,4 @@ position = Vector2(500, 500)
 position = Vector2(1300, 500)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+volume_db = -80.0

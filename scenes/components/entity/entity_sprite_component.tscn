@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3opvhodrck4e"]
+
+[ext_resource type="Script" path="res://scripts/components/EntitySpriteComponent.cs" id="1_w3okf"]
+
+[node name="entity_sprite_component" type="Sprite2D"]
+script = ExtResource("1_w3okf")

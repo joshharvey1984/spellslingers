@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MageData" load_steps=2 format=3 uid="uid://2kf1kgovm2hr"]
+
+[ext_resource type="Script" path="res://scripts/resources/MageData.cs" id="1_xscee"]
+
+[resource]
+script = ExtResource("1_xscee")
+Name = "Red Mage"
+Health = 100
+Speed = 0.0
+FireRate = 0.0
+Abilities = null

@@ -1,7 +1,6 @@
 using Godot;
 
 namespace Components {
-	[Tool]
 	[GlobalClass]
 	public partial class HealthComponent : Node2D {
 		

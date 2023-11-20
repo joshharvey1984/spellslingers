@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq3h2gtt6sfxc"]
+
+[ext_resource type="Script" path="res://scripts/game_object/entity/RedMage.cs" id="1_463y7"]
+[ext_resource type="Texture2D" uid="uid://dnqhpjoqlk7j1" path="res://assets/sprites/fire_mage.png" id="1_me4dh"]
+[ext_resource type="Resource" uid="uid://2kf1kgovm2hr" path="res://resources/mages/red_mage.tres" id="2_j6lh4"]
+[ext_resource type="PackedScene" uid="uid://dt5f8oyrjbgsh" path="res://scenes/components/entity/health_component.tscn" id="4_diurs"]
+[ext_resource type="PackedScene" uid="uid://b3opvhodrck4e" path="res://scenes/components/entity/entity_sprite_component.tscn" id="4_gikr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_430df"]
+size = Vector2(54, 105)
+
+[sub_resource type="Animation" id="Animation_pyoss"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50qtk"]
+_data = {
+"idle": SubResource("Animation_pyoss")
+}
+
+[node name="red_mage" type="CharacterBody2D" node_paths=PackedStringArray("SpriteComponent")]
+script = ExtResource("1_463y7")
+MageData = ExtResource("2_j6lh4")
+SpriteComponent = NodePath("EntitySpriteComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -0.5)
+shape = SubResource("RectangleShape2D_430df")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_diurs")]
+position = Vector2(-108, 84)
+
+[node name="EntitySpriteComponent" parent="." instance=ExtResource("4_gikr4")]
+scale = Vector2(2, 2)
+texture = ExtResource("1_me4dh")
+hframes = 10
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EntitySpriteComponent"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_50qtk")
+}

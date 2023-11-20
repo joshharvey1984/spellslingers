@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=2 format=3 uid="uid://o645733nxfpn"]
+
+[ext_resource type="Script" path="res://scripts/resources/AbilityData.cs" id="1_wxydr"]
+
+[resource]
+script = ExtResource("1_wxydr")
+Name = "Fireball"
+Type = 1
